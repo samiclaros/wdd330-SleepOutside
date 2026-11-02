@@ -31,5 +31,10 @@
     "last 3 opera versions",
     "last 3 ios_saf versions",
     "last 3 safari versions"
-  ]
+  ],
+  "dependencies": {
+    "build": "^0.1.4",
+    "npm": "^12.2.1",
+    "run": "^2.1.11"
+  }
 }
