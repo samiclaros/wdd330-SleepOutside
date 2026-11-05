@@ -21,3 +21,10 @@ export function setClick(selector, callback) {
   });
   qs(selector).addEventListener("click", callback);
 }
+
+// With this, I can get the URL parameters. I change the last line and taked out const product, because as it's a function, I want to return something and not just assign to a variable
+export function getParam(param) { 
+  const queryString = window.location.search;
+  const urlParams = new URLSearchParams(queryString);
+  return urlParams.get(param);
+}
