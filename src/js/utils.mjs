@@ -28,3 +28,18 @@ export function getParam(param) {
   const urlParams = new URLSearchParams(queryString);
   return urlParams.get(param);
 }
+
+// Made on week02
+export function renderListWithTemplate(templateFn, parentElement, list, position = "afterbegin", clear = false) {
+  // If clear is true, we clear the container
+  if (clear === true) {
+    parentElement.innerHTML = "";
+  }
+
+  // We convert the list of information in a big HTML block using the template
+  const htmlStrings = list.map(templateFn).join('');
+
+  // We paste the HTML block inside the main container
+  parentElement.insertAdjacentHTML(position, htmlStrings);
+
+}
