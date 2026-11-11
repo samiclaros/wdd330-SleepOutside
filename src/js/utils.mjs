@@ -43,3 +43,27 @@ export function renderListWithTemplate(templateFn, parentElement, list, position
   parentElement.insertAdjacentHTML(position, htmlStrings);
 
 }
+
+// TeamActivity Week03. Working on automatizing the header and footer
+export function renderWithTemplate(template, parentElement, data, callback) {
+  parentElement.innerHTML = template;
+  if (callback) {
+    callback(data);
+  }
+}
+
+export async function loadTemplate(path) {
+  const response = await fetch(path);
+  const template = await response.text();
+  return template;
+}
+
+export async function loadHeaderFooter() {
+  const headerContainer = document.getElementById('dynamicHeader');
+  const headerTemplate = await loadTemplate('../partials/header.html');
+  renderWithTemplate(headerTemplate, headerContainer);
+
+  const footerContainer = document.getElementById('dynamicFooter');
+  const footerTemplate = await loadTemplate('../partials/footer.html');
+  renderWithTemplate(footerTemplate, footerContainer);
+}
