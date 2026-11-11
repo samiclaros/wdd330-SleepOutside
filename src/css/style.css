@@ -116,6 +116,10 @@ button {
 
 /* End utility classes */
 
+.hide {
+  display: none;
+}
+
 /* Cart icon styles */
 .cart {
   padding-top: 1em;

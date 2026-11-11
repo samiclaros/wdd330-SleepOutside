@@ -5,6 +5,18 @@ function renderCartContents() {
 
   const htmlItems = cartItems.map((item) => cartItemTemplate(item));
   document.querySelector('.product-list').innerHTML = htmlItems.join('');
+
+  const cartFooter = document.querySelector('.cart-footer');
+  const cartTotal = document.querySelector('.cart-total');
+
+  if (cartItems.length > 0) {
+    cartFooter.classList.remove('hide');
+
+    const total = cartItems.reduce((sum, item) => sum + item.FinalPrice, 0);
+    cartTotal.innerHTML = `Total: $${total.toFixed(2)}`;
+  } else {
+    cartFooter.classList.add('hide');
+  }
 }
 
 function cartItemTemplate(item) {
