@@ -124,6 +124,12 @@ button {
 
 /* End utility classes */
 
+.cart-total {
+  /* Samuel Claros added in this line, some style for the total amount inside the cart*/
+  text-align: center;
+  font-size: 2rem;
+}
+
 .hide {
   display: none;
 }
