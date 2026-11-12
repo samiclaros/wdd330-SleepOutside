@@ -36,6 +36,14 @@ header {
   padding: 0.5rem;
 }
 
+header.divider {
+  border-bottom: 0;
+}
+
+header .logo .highlight {
+  color: inherit;
+}
+
 p {
   padding: 0.75rem;
 }
@@ -115,6 +123,10 @@ button {
 }
 
 /* End utility classes */
+
+.hide {
+  display: none;
+}
 
 /* Cart icon styles */
 .cart {
