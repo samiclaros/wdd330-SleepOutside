@@ -10,7 +10,6 @@ export default class ProductDetails {
     async init() {
         // Here we search the product by its ID
         this.product = await this.dataSource.findProductById(this.productId);
-
         // Here we set the values of the ID found in the previous step to the HTML elements
         this.renderProductDetails();
 
@@ -35,7 +34,7 @@ export default class ProductDetails {
         document.querySelector('h2').innerText = this.product.NameWithoutBrand;
 
         const productImage = document.querySelector('.image_divider');
-        productImage.src = this.product.Image;
+        productImage.src = this.product.Images.PrimaryLarge;
         productImage.alt = this.product.NameWithoutBrand;
 
         document.querySelector('.product-card__price').innerText = `$${this.product.FinalPrice}`;
