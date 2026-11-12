@@ -44,6 +44,7 @@ export function renderListWithTemplate(templateFn, parentElement, list, position
 
 }
 
+// TeamActivity Week03. Working on automatizing the header and footer
 export function renderWithTemplate(template, parentElement, data, callback) {
   parentElement.innerHTML = template;
   if (callback) {
@@ -53,26 +54,16 @@ export function renderWithTemplate(template, parentElement, data, callback) {
 
 export async function loadTemplate(path) {
   const response = await fetch(path);
-
-  if (!response.ok) {
-    throw new Error(`Failed to load template "${path}": ${response.status} ${response.statusText}`);
-  }
-
-  return response.text();
+  const template = await response.text();
+  return template;
 }
 
 export async function loadHeaderFooter() {
-  const [headerTemplate, footerTemplate] = await Promise.all([
-    loadTemplate("/partials/header.html"),
-    loadTemplate("/partials/footer.html"),
-  ]);
-  const headerElement = qs("#main-header");
-  const footerElement = qs("#main-footer");
+  const headerContainer = document.getElementById('dynamicHeader');
+  const headerTemplate = await loadTemplate('../partials/header.html');
+  renderWithTemplate(headerTemplate, headerContainer);
 
-  if (!headerElement || !footerElement) {
-    throw new Error("Header or footer placeholder is missing from the page.");
-  }
-
-  renderWithTemplate(headerTemplate, headerElement);
-  renderWithTemplate(footerTemplate, footerElement);
+  const footerContainer = document.getElementById('dynamicFooter');
+  const footerTemplate = await loadTemplate('../partials/footer.html');
+  renderWithTemplate(footerTemplate, footerContainer);
 }
