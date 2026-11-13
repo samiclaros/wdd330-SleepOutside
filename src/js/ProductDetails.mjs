@@ -27,6 +27,17 @@ export default class ProductDetails {
         cart.push(this.product);
         setLocalStorage('so-cart', cart);
     }
+
+    // Individual activity week03 by Sam Claros
+    calculateAndShowDiscount(regularPrice, salePrice) {
+        if (regularPrice > salePrice) {
+            const savings = regularPrice - salePrice;
+            const percentage = Math.round((savings / regularPrice) * 100);
+            return percentage;
+        }
+
+        return ''; // If there is no discount, we don't return nothing.
+    }
     
     // Here we set the values obtained from the product to the HTML elements
     renderProductDetails() {
@@ -37,8 +48,20 @@ export default class ProductDetails {
         productImage.src = this.product.Images.PrimaryLarge;
         productImage.alt = this.product.NameWithoutBrand;
 
-        document.querySelector('.product-card__price').innerText = `$${this.product.FinalPrice}`;
-        document.querySelector('.product__color').innerText = this.product.Colors[0].ColorName;
+        document.querySelector('.product-card__originalPrice').innerText = `Normal Price: $${this.product.SuggestedRetailPrice}`;
+
+        const discountPercent = this.calculateAndShowDiscount(this.product.SuggestedRetailPrice, this.product.FinalPrice);
+        const discountElement = document.querySelector('.product-card__discount');
+        if (discountElement) {
+            if (discountPercent) {
+                discountElement.innerText = `${discountPercent}% OFF!`;
+            } else {
+                discountElement.innerText = '';
+            }
+        }
+
+        document.querySelector('.product-card__finalPrice').innerText = `Final Price: $${this.product.FinalPrice}`;
+        document.querySelector('.product__color').innerText = `Colors available: ${this.product.Colors[0].ColorName}`;
         document.querySelector('.product__description').innerHTML = this.product.DescriptionHtmlSimple;
         document.querySelector('#addToCart').setAttribute('data-id', this.product.Id);
     }

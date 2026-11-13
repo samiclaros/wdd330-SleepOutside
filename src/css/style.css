@@ -223,6 +223,21 @@ button {
   margin-bottom: 1rem;
 }
 
+.product-card__originalPrice,
+.product-card__finalPrice {
+  text-align: center;
+}
+
+.product-card__discount {
+  background-color: rgb(194, 0, 0);
+  color: white;
+  font-weight: bold;
+  text-align: center;
+  display: block;
+  margin: 0 auto;
+  max-width: 18rem;
+}
+
 .card__brand {
   font-size: var(--small-font);
 }
