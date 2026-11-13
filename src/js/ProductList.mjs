@@ -1,7 +1,6 @@
 import { renderListWithTemplate } from "./utils.mjs";
 
 function productCardTemplate(product) {
-    console.log("Objeto product recibido:", product)
     return `<li class="product-card">
     <a href="../product_pages/index.html?product=${product.Id}">
       <img src="${product.Images.PrimaryMedium}" alt="Image of ${product.Name}">
@@ -20,8 +19,8 @@ export default class ProductList {
   }
 
   async init() {
-    // Here we ask the API the tents.json elements
-    const list = await this.dataSource.getData();
+    // Here we ask the API the tents.json elements. For week03 Samuel Claros added inside the parenthesis this.category.
+    const list = await this.dataSource.getData(this.category);
 
     // Once I have the array, I call another function to draw the information
     this.renderList(list);
