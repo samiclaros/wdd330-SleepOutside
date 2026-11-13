@@ -13,30 +13,27 @@ function productCardTemplate(product) {
 }
 
 export default class ProductList {
-    constructor(category, dataSource, listElement) {
-        this.category = category;
-        this.dataSource = dataSource;
-        this.listElement = listElement;
-    }
+  constructor(category, dataSource, listElement) {
+    this.category = category;
+    this.dataSource = dataSource;
+    this.listElement = listElement;
+  }
 
-    async init() {
-        // Here we ask the API the tents.json elements
-        try {
-            const list = await this.dataSource.getData(this.category); // Before we got getData(), but adding on ProductData a parameter for getData, here must have "this.category"
-            // Once I have the array, I call another function to draw the information
-            this.renderList(list);
-        } catch (error) {
-            console.error("¡Hubo un error en el ProductList init:", error);
-        }
-    }
+  async init() {
+    // Here we ask the API the tents.json elements
+    const list = await this.dataSource.getData();
 
-    renderList(list) {
-        /* // I use .map() calling the new function productCardTemplate
+    // Once I have the array, I call another function to draw the information
+    this.renderList(list);
+  }
+
+  renderList(list) {
+    /* // I use .map() calling the new function productCardTemplate
         const htmlStrings = list.map(productCardTemplate);
 
         // Unify and set them in the DOM
         this.listElement.innerHTML = htmlStrings.join(''); */
 
-        renderListWithTemplate(productCardTemplate, this.listElement, list)
-    }
+    renderListWithTemplate(productCardTemplate, this.listElement, list);
+  }
 }
