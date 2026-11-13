@@ -35,7 +35,7 @@ export default class ProductDetails {
         document.querySelector('h2').innerText = this.product.NameWithoutBrand;
 
         const productImage = document.querySelector('.image_divider');
-        productImage.src = this.product.Image;
+        productImage.src = this.product.Images.PrimaryLarge;
         productImage.alt = this.product.NameWithoutBrand;
 
         document.querySelector('.product-card__price').innerText = `$${this.product.FinalPrice}`;
