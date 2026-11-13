@@ -70,6 +70,7 @@ p {
 
 .hero {
   position: relative;
+  margin-bottom: 2rem;
 }
 
 .hero .logo {
@@ -170,8 +171,13 @@ button {
 }
 
 .products {
-  margin-top: 2rem;
   padding: 1rem;
+}
+
+#category-title {
+  /* This is added because the title inside the 4 categories were on the left, with this is centered and bigger */
+  text-align: center;
+  font-size: 3rem;
 }
 
 .product-list {
@@ -184,6 +190,12 @@ button {
 .product-list a {
   text-decoration: none;
   color: var(--dark-grey);
+}
+
+.product-list img {
+  /* Samuel Claros added this CSS part to center the image on the respective categories */
+  display: block;
+  margin: 0 auto;
 }
 
 /* Styles for product lists */
@@ -199,6 +211,16 @@ button {
 .product-card h3,
 .product-card p {
   margin: 0.5em 0;
+}
+
+.product-grid h3 {
+  text-align: center;
+}
+
+.product-grid img {
+  display: block;
+  margin: 0 auto;
+  margin-bottom: 1rem;
 }
 
 .card__brand {
@@ -257,6 +279,21 @@ button {
 .cart-card__price {
   grid-row: 2;
   grid-column: 3;
+}
+
+/* product-grid, this is the style for the 4 categories images */
+
+.product-grid {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  list-style: none;
+  padding: 1.5rem;
+}
+
+.product-grid img {
+  width: 100px;
+  height: auto;
 }
 
 @media screen and (min-width: 500px) {
