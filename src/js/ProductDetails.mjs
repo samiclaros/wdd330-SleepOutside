@@ -27,6 +27,21 @@ export default class ProductDetails {
         
         cart.push(this.product);
         setLocalStorage('so-cart', cart);
+
+        const cartIcon = document.querySelector('.cart-icon') || document.querySelector('[href*="cart"]');
+        if (cartIcon) {
+            cartIcon.classList.remove('cart-animation');
+            // Restart animation if multiple items are added quickly
+            void cartIcon.offsetWidth;
+            cartIcon.classList.add('cart-animation');
+
+            const removeAnimation = () => {
+                cartIcon.classList.remove('cart-animation');
+            };
+
+            cartIcon.addEventListener('animationend', removeAnimation, { once: true });
+            setTimeout(removeAnimation, 700);
+        }
     }
     
     // Here we set the values obtained from the product to the HTML elements
