@@ -26,6 +26,17 @@ export default class ProductDetails {
         
         cart.push(this.product);
         setLocalStorage('so-cart', cart);
+
+        const cartIcon = document.querySelector('.cart svg');
+        if (cartIcon) {
+            cartIcon.classList.add('cart-animation');
+            cartIcon.addEventListener('animationend', () => cartIcon.classList.remove('cart-animation'), { once: true });
+        }
+
+        const counter = document.querySelector('.cart-count');
+        if (counter) {
+            counter.textContent = cart.length;
+        }
     }
 
     // Individual activity week03 by Sam Claros
