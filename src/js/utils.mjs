@@ -63,6 +63,11 @@ export async function loadHeaderFooter() {
   const headerTemplate = await loadTemplate('../partials/header.html');
   renderWithTemplate(headerTemplate, headerContainer);
 
+  const cart = getLocalStorage('so-cart');
+  const count = Array.isArray(cart) ? cart.length : 0;
+  const counter = document.querySelector('.cart-count');
+  if (counter) counter.textContent = count;
+
   const footerContainer = document.getElementById('dynamicFooter');
   const footerTemplate = await loadTemplate('../partials/footer.html');
   renderWithTemplate(footerTemplate, footerContainer);
