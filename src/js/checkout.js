@@ -1,13 +1,13 @@
-import CheckoutProcess from "./CheckoutProcess.mjs";
+import CheckoutProcess from './CheckoutProcess.mjs';
 
-const myCheckout = new CheckoutProcess("so-cart", "#order-summary");
+const myCheckout = new CheckoutProcess('so-cart', '#order-summary');
 myCheckout.init();
 
-document.querySelector("#zip").addEventListener("blur", () => {
+document.querySelector('#zip').addEventListener('blur', () => {
   myCheckout.calculateOrderTotal();
 });
 
-document.querySelector("#checkoutSubmit").addEventListener("click", (e) => {
+document.querySelector('#checkoutSubmit').addEventListener('click', (e) => {
   e.preventDefault();
   const myForm = document.forms[0];
   const chk_status = myForm.checkValidity();
