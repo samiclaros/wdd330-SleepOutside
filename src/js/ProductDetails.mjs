@@ -1,4 +1,4 @@
-import { setLocalStorage, getLocalStorage } from './utils.mjs';
+import { setLocalStorage, getLocalStorage, alertMessage } from './utils.mjs';
 
 export default class ProductDetails {
     constructor(productId, dataSource) {
@@ -26,6 +26,7 @@ export default class ProductDetails {
         
         cart.push(this.product);
         setLocalStorage('so-cart', cart);
+        alertMessage(`${this.product.NameWithoutBrand} added to cart!`);
 
         const cartIcon = document.querySelector('.cart svg');
         if (cartIcon) {

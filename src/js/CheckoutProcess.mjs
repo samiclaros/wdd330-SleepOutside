@@ -1,4 +1,4 @@
-import { getLocalStorage } from './utils.mjs';
+import { getLocalStorage, setLocalStorage, alertMessage, removeAllAlerts } from './utils.mjs';
 import ExternalServices from '../ExternalServices.mjs';
 
 const services = new ExternalServices();
@@ -77,32 +77,27 @@ export default class CheckoutProcess {
     if (orderTotal) orderTotal.innerText = `$${this.orderTotal.toFixed(2)}`;
   }
 
-  async checkout(formElement) {
-    const formTR = formDataToJSON(formElement);
+  async checkout() {
+    const formElement = document.forms["checkout"];
 
-    const order = {
-      orderDate: new Date().toISOString(),
-      fname: formTR.fname,
-      lname: formTR.lname,
-      street: formTR.street,
-      city: formTR.city,
-      state: formTR.state,
-      zip: formTR.zip,
-      cardNumber: formTR.cardNumber,
-      expiration: formTR.expiration,
-      code: formTR.code,
-      items: packageItems(this.list),
-      orderTotal: this.orderTotal.toFixed(2),
-      shipping: this.shipping,
-      tax: this.tax.toFixed(2)
-    };
+    const json = formDataToJSON(formElement);
+    json.orderDate = new Date();
+    json.orderTotal = this.orderTotal;
+    json.tax = this.tax;
+    json.shipping = this.shipping;
+    json.items = packageItems(this.list);
 
     try {
-      const res = await services.checkout(order);
-      console.log('Orden enviada con éxito:', res);
-      return res;
+      const res = await services.checkout(json);
+      console.log(res);
+      setLocalStorage("so-cart", []);
+      location.assign("/checkout/success.html");
     } catch (err) {
-      console.error('Error al procesar el checkout:', err);
+      removeAllAlerts();
+      for (let message in err.message) {
+        alertMessage(err.message[message]);
+      }
+      console.log(err);
     }
   }
 }
