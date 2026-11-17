@@ -394,16 +394,25 @@ label input {
 #checkout-submit {
   margin-top: 1rem;
 }
-@media screen and (min-width: 600px) {
-  fieldset {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 0.75rem 1rem;
-  }
-  legend {
-    grid-column: 1 / -1;
-  }
-  label {
-    margin-bottom: 0;
-  }
+.alert {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem 1rem;
+  background-color: #f0a868;
+  border: 1px solid #d97724;
+  color: #1a1a1a;
+  margin-bottom: 1rem;
+  border-radius: 4px;
+  font-weight: bold;
+}
+
+.alert p {
+  margin: 0;
+}
+
+.alert span {
+  cursor: pointer;
+  padding: 0 0.5rem;
+  font-size: 1.1rem;
 }
