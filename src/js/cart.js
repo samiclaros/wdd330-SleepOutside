@@ -12,7 +12,7 @@ function renderCartContents() {
   if (cartItems.length > 0) {
     cartFooter.classList.remove('hide');
 
-    const total = cartItems.reduce((sum, item) => sum + item.FinalPrice, 0);
+    const total = cartItems.reduce((sum, item) => sum + item.FinalPrice * (item.quantity || 1), 0);
     cartTotal.innerHTML = `Total: $${total.toFixed(2)}`;
   } else {
     cartFooter.classList.add('hide');
