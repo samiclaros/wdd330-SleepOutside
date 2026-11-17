@@ -17,6 +17,57 @@
     <main class="divider">
       <section class="products">
         <h2>Review & Place your Order</h2>
+
+        <div class="form-container">
+          <form id="checkout" name="checkout">
+            <fieldset>
+              <legend>Customer Name</legend>
+              <label for="fname">First Name</label>
+              <input type="text" id="fname" name="fname" required />
+
+              <label for="lname">Last Name</label>
+              <input type="text" id="lname" name="lname" required />
+            </fieldset>
+
+            <fieldset>
+              <legend>Shipping Adress</legend>
+              <label for="street">Street Adress</label>
+              <input type="text" name="street" id="street" required />
+
+              <label for="city">City</label>
+              <input type="text" name="city" id="city" required />
+
+              <label for="state">State</label>
+              <input type="text" name="state" id="state" required />
+
+              <label for="zip">Zip Code</label>
+              <input type="text" name="zip" id="zip" required />
+            </fieldset>
+
+            <fieldset>
+              <legend>Payment Information</legend>
+              <label for="cardNumber">Credit Card Number</label>
+              <input type="text" name="cardNumber" id="cardNumber" required />
+
+              <label for="expiration">Expiration Date</label>
+              <input type="text" name="expiration" id="expiration" required />
+
+              <label for="code">Security Code</label>
+              <input type="text" name="code" id="code" required />
+            </fieldset>
+
+            <button type="submit" id="checkoutSubmit">Checkout</button>
+          </form>
+
+          <!-- This part goes with Step 4: Order Summary -->
+          <section class="order-summary">
+            <h3>Order Summary</h3>
+            <p>Subtotal: <span id="subtotal"></span></p>
+            <p>Tax: <span id="tax"></span></p>
+            <p>Shipping Estimate: <span id="shipping"></span></p>
+            <p>Order Total: <span id="orderTotal"></span></p>
+          </section>
+        </div>
       </section>
     </main>
 
