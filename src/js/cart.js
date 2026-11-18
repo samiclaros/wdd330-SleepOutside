@@ -8,14 +8,17 @@ function renderCartContents() {
 
   const cartFooter = document.querySelector('.cart-footer');
   const cartTotal = document.querySelector('.cart-total');
+  const checkoutButton = document.querySelector('#checkout-btn');
 
   if (cartItems.length > 0) {
     cartFooter.classList.remove('hide');
+    checkoutButton.classList.remove('hide');
 
     const total = cartItems.reduce((sum, item) => sum + item.FinalPrice, 0);
     cartTotal.innerHTML = `Total: $${total.toFixed(2)}`;
   } else {
     cartFooter.classList.add('hide');
+    checkoutButton.classList.add('hide');
   }
 }
 

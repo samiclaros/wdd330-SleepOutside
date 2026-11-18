@@ -1,4 +1,24 @@
-import { getLocalStorage } from './utils.mjs'
+import { getLocalStorage } from './utils.mjs';
+import ExternalServices from './ExternalServices.mjs';
+
+function packageItems(items) {
+    return items.map((item) => ({
+        id: item.Id,
+        name: item.Name,
+        price: item.FinalPrice,
+        quantity: 1
+    }));
+}
+
+function formToJSON(formElement) {
+    const formData = new FormData(formElement);
+    const convertedJSON = {};
+    formData.forEach((value, key) => {
+        convertedJSON[key] = value;
+    });
+
+    return convertedJSON;
+} 
 
 export default class CheckoutProcess {
     constructor(key, outputSelector) {
@@ -9,11 +29,16 @@ export default class CheckoutProcess {
         this.shipping = 0;
         this.tax = 0;
         this.orderTotal = 0;
+        this.services = new ExternalServices();
     }
 
     init() {
         this.list = getLocalStorage(this.key);
         this.calculateItemSubtotal();
+        document.querySelector('#checkoutSubmit').addEventListener('click', (e) => {
+            e.preventDefault();
+            this.checkout();
+        });
     }
 
     calculateItemSubtotal() {
@@ -50,5 +75,24 @@ export default class CheckoutProcess {
         // Order Total
         const orderTotalElement = document.querySelector(`${this.outputSelector} #orderTotal`);
         orderTotalElement.innerHTML = `$${this.orderTotal.toFixed(2)}`;
+    }
+
+    async checkout() {
+        const formElement = document.forms['checkout'];
+        const json = formToJSON(formElement);
+
+        json.orderDate = new Date().toISOString();
+        json.items = packageItems(this.list);
+        json.subtotal = this.itemTotal;
+        json.shipping = this.shipping;
+        json.tax = this.tax;
+        json.orderTotal = this.orderTotal;
+
+        try {
+            const res = await this.services.checkout(json);
+            console.log(res);
+        } catch (err) {
+            console.log(err);
+        }
     }
 }
