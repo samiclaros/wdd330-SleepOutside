@@ -1,4 +1,4 @@
-import { getLocalStorage } from './utils.mjs';
+import { getLocalStorage , alertMessage} from './utils.mjs';
 import ExternalServices from './ExternalServices.mjs';
 
 function packageItems(items) {
@@ -33,11 +33,20 @@ export default class CheckoutProcess {
     }
 
     init() {
+        // We verify if we are in the checkout page looking the principal button
+        const checkoutButton = document.querySelector('#checkoutSubmit');
+        if (!checkoutButton) return;
         this.list = getLocalStorage(this.key);
         this.calculateItemSubtotal();
         document.querySelector('#checkoutSubmit').addEventListener('click', (e) => {
             e.preventDefault();
-            this.checkout();
+
+            const formElement = document.forms['checkout'];
+            const check_status = formElement.checkValidity();
+            formElement.reportValidity();
+            if (check_status) {
+                this.checkout();
+            }
         });
     }
 
@@ -91,8 +100,15 @@ export default class CheckoutProcess {
         try {
             const res = await this.services.checkout(json);
             console.log(res);
+
+            this.list = localStorage.removeItem(this.key);
+            this.list = [];
+            window.location.href = '/checkout/success.html';
         } catch (err) {
             console.log(err);
+
+            const errorMessage = err.message.cardNumber || JSON.stringify(err.message);
+            alertMessage(errorMessage);
         }
     }
 }
