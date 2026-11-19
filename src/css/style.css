@@ -164,25 +164,53 @@ button {
 }
 
 /* checkout.html */
+
+/* Error Message */
+
+.alert {
+  background-color: #f0a868;
+  color: #303030;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  font-weight: bold;
+}
+
+.alert span {
+  cursor: pointer;
+  padding: 0 0.5rem;
+  font-weight: bold;
+}
+
+.alert span:hover {
+  color: white;
+}
+
 /* Form */
 
-.products {
+.productsCheckout {
   margin: 0 auto;
   max-width: 600px;
 }
 
-.products h2 {
+.productsCheckout h2 {
   text-align: center;
   padding: 1rem;
 }
 
 legend {
-  font-size: 1.5rem;
-  background-color: rgb(189, 123, 0);
-  min-width: 540px;
-  padding: 0.3rem 0.3rem;
-  color: white;
   text-align: center;
+  font-size: 1.5rem;
+  background-color: rgb(202, 131, 0);
+  color: white;
+  padding: 0.5rem;
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 fieldset {
@@ -193,13 +221,12 @@ fieldset {
 
 label {
   display: block;
-  /* padding: .5rem; */
   margin-bottom: 0.5rem;
 }
 
 input {
   display: block;
-  min-width: 540px;
+  width: 100%;
   min-height: 2rem;
   margin-bottom: 0.5rem;
 }
@@ -215,10 +242,10 @@ input {
 
 .order-summary h3 {
   font-size: 1.5rem;
-  /* background-color: rgb(189, 123, 0); */
-  min-width: 540px;
+  background-color: rgb(189, 123, 0);
+  width: 100%;
   padding: 0.3rem 0.3rem;
-  color: black;
+  color: rgb(255, 255, 255);
   text-align: center;
 }
 
@@ -230,6 +257,21 @@ input {
 }
 /* Order Summary */
 /* checkout.html */
+
+/* success.html */
+
+.successMessage {
+  text-align: center;
+  font-size: 2rem;
+  padding: 3rem;
+}
+
+.successButton a {
+  color: white;
+  text-decoration: none;
+}
+
+/* success.html */
 
 /* End cart icon styles */
 
