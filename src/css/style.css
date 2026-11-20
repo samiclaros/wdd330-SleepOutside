@@ -382,6 +382,36 @@ input {
   width: 100%;
 }
 
+.breadcrumb {
+  padding: 0.6rem 1rem;
+  font-size: var(--small-font);
+  color: var(--dark-grey);
+  background-color: rgba(var(--secondary-color-rgb, 82, 91, 15), 0.06);
+  border-bottom: 1px solid var(--light-grey);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.breadcrumb span {
+  color: var(--dark-grey);
+  font-weight: 500;
+  letter-spacing: 0.2px;
+}
+
+.breadcrumb span:last-child {
+  font-weight: 600;
+  color: var(--tertiary-color);
+}
+
+.breadcrumb span:not(:last-child)::after {
+  content: '›';
+  margin: 0 0.25rem;
+  color: var(--tertiary-color);
+  font-size: 0.9em;
+  opacity: 0.7;
+}
+
 /* Start cart list card styles */
 .cart-card {
   display: grid;
