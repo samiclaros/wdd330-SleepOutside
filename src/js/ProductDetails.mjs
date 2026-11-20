@@ -15,6 +15,8 @@ export default class ProductDetails {
 
         // I connect the "add button" to the shopping cart
         document.getElementById('addToCart').addEventListener('click', this.addProductToCart.bind(this));
+
+        return this.product;
     }
 
     // Here we add the product to the shopping cart. We deleted what is commented on produc.js because that was not working.

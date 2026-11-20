@@ -24,6 +24,8 @@ export default class ProductList {
 
     // Once I have the array, I call another function to draw the information
     this.renderList(list);
+
+    return list;
   }
 
   renderList(list) {
