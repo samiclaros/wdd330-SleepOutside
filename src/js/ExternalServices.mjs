@@ -16,6 +16,35 @@ export default class ExternalServices {
     return data.Result;
   }
 
+  async searchProducts(keyword) {
+  const response = await fetch(`${baseURL}products`);
+  const data = await convertToJson(response);
+
+  const products = Array.isArray(data)
+    ? data
+    : Array.isArray(data.Result)
+      ? data.Result
+      : [];
+
+  const searchTerm = keyword.trim().toLowerCase();
+
+  if (!searchTerm) {
+    return [];
+  }
+
+  return products.filter((product) => {
+    const name = product.Name?.toLowerCase() || '';
+    const brand = product.Brand?.Name?.toLowerCase() || '';
+    const category = product.Category?.toLowerCase() || '';
+
+    return (
+      name.includes(searchTerm) ||
+      brand.includes(searchTerm) ||
+      category.includes(searchTerm)
+    );
+  });
+}
+
   async findProductById(id) {
     const product = await fetch(`${baseURL}product/${id}`);
     const data = await convertToJson(product);
