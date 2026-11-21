@@ -455,6 +455,20 @@ input {
   width: 100px;
   height: auto;
 }
+.product-search-form input[type='search'] {
+  width: 100%;
+  min-width: 320px;
+  max-width: 450px;
+  box-sizing: border-box;
+  border-radius: 40px;
+}
+
+@media (max-width: 480px) {
+  .product-search-form input[type='search'] {
+    min-width: 0;
+    width: 100%;
+  }
+}
 
 @media screen and (min-width: 500px) {
   body {
