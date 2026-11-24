@@ -512,3 +512,49 @@ footer {
   font-size: 0.8em;
   margin-left: 0.3em;
 }
+
+.breadcrumb {
+  background-color: #525b0f14;
+  border-bottom: 1px solid var(--light-grey);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.5rem 1rem;
+  font-size: var(--small-font);
+  font-weight: 500;
+  color: var(--dark-grey);
+}
+
+.breadcrumb__list {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.breadcrumb__link {
+  color: var(--secondary-color);
+  text-decoration: none;
+  font-weight: 600;
+  padding: 0.125rem 0.25rem;
+  border-radius: 3px;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.breadcrumb__link:hover,
+.breadcrumb__link:focus-visible {
+  background-color: #525b0f26;
+  outline: none;
+}
+
+.breadcrumb__separator {
+  color: var(--light-grey);
+  line-height: 1;
+}
+
+.breadcrumb__item--current {
+  color: var(--tertiary-color);
+  font-weight: 700;
+}

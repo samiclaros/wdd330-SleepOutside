@@ -1,6 +1,7 @@
 import ExternalServices from './ExternalServices.mjs';
 import ProductList from './ProductList.mjs';
 import { getParam, loadHeaderFooter } from './utils.mjs';
+import { updateBreadcrumb } from './breadcrumb.mjs';
 
 const category = getParam('category');
 const searchTerm = getParam('search');
@@ -49,6 +50,8 @@ async function initializeProducts() {
       listElement.appendChild(message);
     }
 
+    updateBreadcrumb({ category: null });
+
     return;
   }
 
@@ -63,13 +66,22 @@ async function initializeProducts() {
       );
 
       await productList.init();
+      updateBreadcrumb({
+        category,
+        count: listElement.querySelectorAll('.product-card').length,
+      });
+
+      const categoryLink = document.querySelector('.breadcrumb__link');
+      if (categoryLink) categoryLink.href = `index.html?category=${category}`;
     } catch (error) {
       console.error('Unable to load category products:', error);
       listElement.innerHTML = '<li>Unable to load products. Please try again.</li>';
+      updateBreadcrumb({ category, count: 0 });
     }
   } else {
     personalizedTitle.textContent = 'Products';
     listElement.innerHTML = '<li>Select a category or search for products.</li>';
+    updateBreadcrumb({ category: null });
   }
 }
 

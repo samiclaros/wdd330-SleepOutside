@@ -10,6 +10,17 @@
 
   <body>
     <header class="divider" id="dynamicHeader"></header>
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <ol class="breadcrumb__list">
+        <li class="breadcrumb__item">
+          <a href="#" class="breadcrumb__link" data-breadcrumb="category">Category</a>
+        </li>
+        <li class="breadcrumb__separator" aria-hidden="true">&#8250;</li>
+        <li class="breadcrumb__item breadcrumb__item--current" aria-current="page" data-breadcrumb="count">
+          (0 items)
+        </li>
+      </ol>
+    </nav>
     <main class="divider">
       <section class="products">
         <h2 class="products" id="category-title"></h2>
