@@ -7,11 +7,16 @@ const dataSource = new ExternalServices(category);
 const listElement = document.querySelector('.product-list');
 
 const productList = new ProductList(category, dataSource, listElement);
+const breadcrumb = document.getElementById('breadcrumb');
+
 productList.init().then((list) => {
-  const breadcrumb = document.getElementById('breadcrumb');
+  if (!breadcrumb) return;
+  const items = Array.isArray(list) ? list : [];
   const label =
-    category.charAt(0).toUpperCase() + category.slice(1).replace(/-/g, ' ');
-  breadcrumb.innerHTML = `<span>${label}</span> <span>→</span> <span>(${list.length} items)</span>`;
+    category && typeof category === 'string'
+      ? category.charAt(0).toUpperCase() + category.slice(1).replace(/-/g, ' ')
+      : 'Productos';
+  breadcrumb.innerHTML = `<span>${label}</span> <span>→</span> <span>(${items.length} items)</span>`;
 });
 
 const personalizedTitle = document.getElementById('category-title');
