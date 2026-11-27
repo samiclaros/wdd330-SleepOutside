@@ -20,7 +20,7 @@ export default class ProductDetails {
     // Here we add the product to the shopping cart. We deleted what is commented on produc.js because that was not working.
     addProductToCart() {
         let cart = getLocalStorage('so-cart');
-        if (cart === null || cart === '') {
+        if(!Array.isArray(cart)) {
             cart = [];
         }
         
@@ -28,8 +28,8 @@ export default class ProductDetails {
         setLocalStorage('so-cart', cart);
 
         // Message to let the user know the item has been added succesfully
-        const succesfullAddedMessage = `Your item has been added succesfully`;
-        alertMessage(succesfullAddedMessage);
+        const successMessage =  `${this.product.NameWithoutBrand} has been successfully added to your cart.`;
+        alertMessage(successMessage, true, "success");
 
         const cartIcon = document.querySelector('.cart svg');
         if (cartIcon) {
